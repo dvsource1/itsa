@@ -1,8 +1,9 @@
 import './globals.css'
 
 import { Fira_Code } from 'next/font/google'
+import Header from 'itsa/components/layout/Header'
 import type { Metadata } from 'next'
-import TRPCProvider from 'itsa/trpc/TRPCProvider'
+import Provider from '../components/provider'
 
 const font = Fira_Code({ subsets: ['latin'] })
 
@@ -18,9 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className} suppressHydrationWarning={true}>
-        <TRPCProvider>{children}</TRPCProvider>
-      </body>
+      <Provider>
+        <body className={font.className} suppressHydrationWarning={true}>
+          <Header />
+          {children}
+        </body>
+      </Provider>
     </html>
   )
 }
